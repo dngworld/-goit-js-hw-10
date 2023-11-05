@@ -14,10 +14,10 @@ const elements = {
 
 const { catSelect, catInfo, loader, error } = elements;
 
-loader.classList.replace('loader', 'is-hidden');
-error.classList.add('is-hidden');
+// loader.classList.replace('loader', 'is-hidden');
+// error.classList.add('is-hidden');
 catInfo.classList.add('is-hidden');
-error.classList.add('is-hidden');
+// error.classList.add('is-hidden');
 
 catSelect.addEventListener('change', handlerSelect);
 

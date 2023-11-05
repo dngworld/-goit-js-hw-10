@@ -14,20 +14,20 @@ const elements = {
 
 const { catSelect, catInfo, loader, error } = elements;
 
-// loader.classList.replace('loader', 'is-hidden');
-// error.classList.add('is-hidden');
-// catInfo.classList.add('is-hidden');
-// error.classList.add('is-hidden');
+loader.classList.replace('loader', 'is-hidden');
+error.classList.add('is-hidden');
+catInfo.classList.add('is-hidden');
+error.classList.add('is-hidden');
 
 catSelect.addEventListener('change', handlerSelect);
 
 updateSelect();
 
 function updateSelect(data) {
-  //   loader.classList.remove('loader', 'is-hidden');
+  loader.classList.remove('loader', 'is-hidden');
   fetchBreeds(data)
     .then(data => {
-      //   loader.classList.replace('loader', 'is-hidden');
+      loader.classList.replace('loader', 'is-hidden');
 
       let markSelect = data.map(({ name, id }) => {
         return `<option value ='${id}'>${name}</option>`;

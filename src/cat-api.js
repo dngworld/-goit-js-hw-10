@@ -1,45 +1,27 @@
-// import axios from 'axios';
-// axios.defaults.headers.common['x-api-key'] =
-//   'live_2tNrx7o9SIUIF4HVTOZ1oReiU6fDyFEpWixRHSIKJAY7cl5MBa0QmhWZtQEVCFxJ';
-// axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
+import axios from 'axios';
 
-// export function fetchBreeds() {
-//   return axios.get('/breeds').then(response => {
-//     if (!response.ok) {
-//       throw new Error(response.statusText);
-//     }
-//     return response.json();
-//   });
-// }
+axios.defaults.headers.common['x-api-key'] =
+  'live_WBVnSrCgJEWDhvaxWKVEblBD9I3UPsNXMuz2H4rybmKpycEjrpMhpiRDU7evWRwF';
+axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
 
-// export function fetchCatByBreed(breedId) {
-//   return axios.get(`/images/search?breed_ids=${breedId}`).then(response => {
-//     if (!response.ok) {
-//       throw new Error(response.statusText);
-//     }
-//     return response.json();
-//   });
-// }
-const URL = 'https://api.thecatapi.com/v1';
-const API_KEY =
-  'live_2tNrx7o9SIUIF4HVTOZ1oReiU6fDyFEpWixRHSIKJAY7cl5MBa0QmhWZtQEVCFxJ';
-
-export function fetchBreeds() {
-  return fetch(`${URL}/breeds?api_key=${API_KEY}`).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
+function fetchBreeds() {
+  return axios.get('/breeds').then(function (response) {
+    if (response.status >= 400) {
+      throw new Error(response.statusText || 'Упс! Щось пішло не так');
     }
-    return response.json();
+    return response;
   });
 }
 
-export function fetchCatByBreed(breedId) {
-  return fetch(
-    `${URL}/images/search?api_key=${API_KEY}&breed_ids=${breedId}`
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  });
+function fetchCatByBreed(breedId) {
+  return axios
+    .get(`/images/search?breed_ids=${breedId}`)
+    .then(function (response) {
+      if (response.status >= 400) {
+        throw new Error(response.statusText || 'Упс! Щось пішло не так');
+      }
+      return response;
+    });
 }
+
+export { fetchBreeds, fetchCatByBreed };
